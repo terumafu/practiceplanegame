@@ -65,7 +65,6 @@ sky = SubResource("Sky_wjadi")
 [node name="3DWorld" type="Node3D" parent="."]
 
 [node name="player" type="CharacterBody3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_1r4ca")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/player"]
