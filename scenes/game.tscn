@@ -61,7 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.808064, 1.98058)
 shape = SubResource("BoxShape3D_80y5c")
 
 [node name="Camera3D" type="Camera3D" parent="3DWorld/CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 2.439, 6.29)
+transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 2.439, 6.36519)
 fov = 73.2935
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/CharacterBody3D"]
