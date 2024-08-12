@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://sep2m3gwn0cw"]
+[gd_scene load_steps=11 format=3 uid="uid://sep2m3gwn0cw"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_1r4ca"]
 [ext_resource type="Texture2D" uid="uid://csykd3nwqqn1x" path="res://assets/Plane_Plane_Col.png" id="1_ejj40"]
 [ext_resource type="Texture2D" uid="uid://btxi37bpdkm67" path="res://assets/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
 
@@ -50,11 +51,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sne8e")
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_58ifc"]
+
+[sub_resource type="Sky" id="Sky_wjadi"]
+sky_material = SubResource("ProceduralSkyMaterial_58ifc")
+
+[sub_resource type="Environment" id="Environment_8up3g"]
+background_mode = 2
+sky = SubResource("Sky_wjadi")
+
 [node name="Game" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 
 [node name="player" type="CharacterBody3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_1r4ca")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.808064, 1.98058)
@@ -68,3 +80,12 @@ fov = 73.2935
 transform = Transform3D(-4.32222e-09, -0.1, -5.30834e-09, -0.0149188, 5.96047e-09, -0.0988809, 0.0988809, -4.37114e-09, -0.0149188, 0, 0, 0)
 mesh = SubResource("ArrayMesh_iqby8")
 skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24.2167)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2559, 38.878)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
+environment = SubResource("Environment_8up3g")
