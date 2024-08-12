@@ -64,7 +64,12 @@ script = ExtResource("1_krjvc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/player"]
 shape = SubResource("CapsuleShape3D_474hm")
 
+[node name="Camera3D" type="Camera3D" parent="3DWorld/player"]
+transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 2.439, 6.36519)
+fov = 73.2935
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/player"]
+transform = Transform3D(-4.32222e-09, -0.1, -5.30834e-09, -0.0149188, 5.96047e-09, -0.0988809, 0.0988809, -4.37114e-09, -0.0149188, 0, 0, 0)
 mesh = SubResource("ArrayMesh_iqby8")
 skeleton = NodePath("")
 
