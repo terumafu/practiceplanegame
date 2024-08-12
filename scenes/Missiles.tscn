@@ -1,10 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://8p3vs5cpp4lu"]
+[gd_scene load_steps=19 format=3 uid="uid://8p3vs5cpp4lu"]
 
 [ext_resource type="Script" path="res://scripts/Missiles.gd" id="1_4v4a2"]
+[ext_resource type="Shader" path="res://shaders/Fire.gdshader" id="2_3auhx"]
+[ext_resource type="Texture2D" uid="uid://cmuc8fpljsxli" path="res://assets/FireMask.png" id="3_wu5jk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8trdc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1m43e"]
+lightmap_size_hint = Vector2i(25, 22)
+
+[sub_resource type="Gradient" id="Gradient_cwak6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bm831"]
+frequency = 0.0004
+fractal_gain = 0.7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wrmj6"]
+width = 1024
+height = 1024
+seamless = true
+color_ramp = SubResource("Gradient_cwak6")
+noise = SubResource("FastNoiseLite_bm831")
+
+[sub_resource type="Gradient" id="Gradient_mm0lm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cx8bx"]
+frequency = 0.0005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmuf3"]
+width = 1024
+height = 1024
+seamless = true
+seamless_blend_skirt = 0.371
+color_ramp = SubResource("Gradient_mm0lm")
+noise = SubResource("FastNoiseLite_cx8bx")
+
+[sub_resource type="Gradient" id="Gradient_ghvlu"]
+colors = PackedColorArray(1, 0.918, 0.59, 1, 1, 0.265, 0.02, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c35hs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5reis"]
+seamless = true
+color_ramp = SubResource("Gradient_ghvlu")
+noise = SubResource("FastNoiseLite_c35hs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vqxct"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8v47s"]
+seamless = true
+color_ramp = SubResource("Gradient_ghvlu")
+noise = SubResource("FastNoiseLite_vqxct")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qnnx"]
+render_priority = 0
+shader = ExtResource("2_3auhx")
+shader_parameter/color = Color(1, 0.696667, 0.65, 1)
+shader_parameter/scrollSpeed = 0.1
+shader_parameter/bloom = 26.8
+shader_parameter/viewMask = false
+shader_parameter/noise1 = SubResource("NoiseTexture2D_5reis")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_8v47s")
+shader_parameter/maskNoise1 = SubResource("NoiseTexture2D_wrmj6")
+shader_parameter/maskNoise2 = SubResource("NoiseTexture2D_dmuf3")
+shader_parameter/mask = ExtResource("3_wu5jk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cbbg0"]
 
 [node name="Missiles" type="CharacterBody3D"]
 script = ExtResource("1_4v4a2")
@@ -16,3 +77,8 @@ shape = SubResource("CapsuleShape3D_8trdc")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_1m43e")
+
+[node name="Fire" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 2)
+material_override = SubResource("ShaderMaterial_2qnnx")
+mesh = SubResource("PlaneMesh_cbbg0")
