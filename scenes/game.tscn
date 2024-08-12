@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://sep2m3gwn0cw"]
 
-[ext_resource type="Texture2D" path="res://assets/Plane_Plane_Col.png" id="1_ejj40"]
-[ext_resource type="Texture2D" path="res://assets/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
+[ext_resource type="Texture2D" uid="uid://csykd3nwqqn1x" path="res://assets/Plane_Plane_Col.png" id="1_ejj40"]
+[ext_resource type="Texture2D" uid="uid://btxi37bpdkm67" path="res://assets/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80y5c"]
 size = Vector3(1, 0.944946, 4.77151)
@@ -54,17 +54,17 @@ shadow_mesh = SubResource("ArrayMesh_sne8e")
 
 [node name="3DWorld" type="Node3D" parent="."]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="3DWorld"]
+[node name="player" type="CharacterBody3D" parent="3DWorld"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.808064, 1.98058)
 shape = SubResource("BoxShape3D_80y5c")
 
-[node name="Camera3D" type="Camera3D" parent="3DWorld/CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="3DWorld/player"]
 transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 2.439, 6.38734)
 fov = 73.2935
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/player"]
 transform = Transform3D(-4.32222e-09, -0.1, -5.30834e-09, -0.0149188, 5.96047e-09, -0.0988809, 0.0988809, -4.37114e-09, -0.0149188, 0, 0, 0)
 mesh = SubResource("ArrayMesh_iqby8")
 skeleton = NodePath("")
