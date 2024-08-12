@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csykd3nwqqn1x"
-path.s3tc="res://.godot/imported/Plane_Plane_Col.png-efc66ce609f6f2b36f6ce964bc716930.s3tc.ctex"
+uid="uid://btxi37bpdkm67"
+path.s3tc="res://.godot/imported/Plane_Plane_Met-Plane_Rough.png-8d9c54a5ae3c8cb0fd594088e67f2582.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/Plane_Plane_Col.png"
-dest_files=["res://.godot/imported/Plane_Plane_Col.png-efc66ce609f6f2b36f6ce964bc716930.s3tc.ctex"]
+source_file="res://assets/Maps/Plane_Plane_Met-Plane_Rough.png"
+dest_files=["res://.godot/imported/Plane_Plane_Met-Plane_Rough.png-8d9c54a5ae3c8cb0fd594088e67f2582.s3tc.ctex"]
 
 [params]
 

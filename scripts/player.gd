@@ -18,8 +18,8 @@ func _physics_process(delta):
 	var leftright = Input.get_axis("d","a");
 	#otation_degrees.x = -89;
 	#print(rotation_degrees)
-	print(transform.basis)
-	transform.basis = transform.basis.rotated(transform.basis.x, updown * 0.05)
+	#print(transform.basis)
+	transform.basis = global_transform.basis.rotated(transform.basis.x, updown * 0.05)
 	velocity = -transform.basis.z * SPEED;
 	transform.basis = transform.basis.rotated(transform.basis.y,leftright * 0.05)
 	"""
