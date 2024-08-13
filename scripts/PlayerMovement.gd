@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var minSpeed := 10.0
 @export var maxSpeed := 30.0
 @export var turnSpeed := 1.05
-@export var pitchSpeed := 0.5
+@export var pitchSpeed := 1.05
 @export var levelSpeed := 3.0
 @export var throttleDelta := 30.0
 @export var acceleration := 6.0
