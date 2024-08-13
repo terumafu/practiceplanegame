@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1r4ca"]
 [ext_resource type="Texture2D" uid="uid://csykd3nwqqn1x" path="res://assets/Maps/Plane_Plane_Col.png" id="1_ejj40"]
 [ext_resource type="Texture2D" uid="uid://btxi37bpdkm67" path="res://assets/Maps/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
-[ext_resource type="PackedScene" uid="uid://8p3vs5cpp4lu" path="res://scenes/Missiles.tscn" id="4_88oyd"]
+[ext_resource type="PackedScene" path="res://scenes/Missiles.tscn" id="4_88oyd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80y5c"]
 size = Vector3(1, 0.944946, 4.77151)
@@ -78,7 +78,7 @@ mesh = SubResource("ArrayMesh_iqby8")
 skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="3DWorld/player"]
-transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 2.924, 5.03832)
+transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 8.19442, 20.7899)
 fov = 73.2935
 
 [node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
