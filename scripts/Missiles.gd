@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var maxSpeed := 1.0 # m/s
 @export var acceleration := 0.3 # m/s
 @export var slowDownPoint := 0.5 # m/s
-@export var turnSpeed := 30 # deg/s
+@export var turnSpeed := 60 # deg/s
 
 # Variables
 var vel := Vector3.ZERO
@@ -21,7 +21,7 @@ func _process(delta):
 	lerp_3d_rotation(currentRot, rotation, turnSpeed * delta)
 	
 	speed += (acceleration * delta) * slowDown
-	vel -= Vector3(sin(rotation.y), 0, cos(rotation.y)) * speed * delta
+	vel -= global_transform.origin.normalized() * speed * delta
 	slowDown = clamp(maxSpeed - vel.distance_to(previousVel) / delta, 0, slowDownPoint) / slowDownPoint
 	
 	previousVel = vel
