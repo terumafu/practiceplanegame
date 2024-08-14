@@ -1,12 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://sep2m3gwn0cw"]
+[gd_scene load_steps=20 format=3 uid="uid://sep2m3gwn0cw"]
 
 [ext_resource type="Texture2D" uid="uid://csykd3nwqqn1x" path="res://assets/Maps/Plane_Plane_Col.png" id="1_ejj40"]
 [ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="1_m7m1o"]
+[ext_resource type="Script" path="res://scripts/Shortcuts.gd" id="1_uyrw6"]
 [ext_resource type="Texture2D" uid="uid://btxi37bpdkm67" path="res://assets/Maps/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
 [ext_resource type="PackedScene" uid="uid://8p3vs5cpp4lu" path="res://scenes/Missiles.tscn" id="4_88oyd"]
 [ext_resource type="Shader" path="res://shaders/Grass.gdshader" id="4_b52bd"]
-[ext_resource type="Shader" path="res://shaders/Fire.gdshader" id="6_x6eky"]
-[ext_resource type="Texture2D" uid="uid://cmuc8fpljsxli" path="res://assets/FireMask.png" id="7_olsus"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80y5c"]
 size = Vector3(1, 1.49097, 4.77151)
@@ -100,66 +99,8 @@ size = Vector3(100, 1, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4at78"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="Gradient" id="Gradient_cwak6"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bm831"]
-frequency = 0.0004
-fractal_gain = 0.7
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wrmj6"]
-width = 1024
-height = 1024
-seamless = true
-color_ramp = SubResource("Gradient_cwak6")
-noise = SubResource("FastNoiseLite_bm831")
-
-[sub_resource type="Gradient" id="Gradient_mm0lm"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cx8bx"]
-frequency = 0.0005
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmuf3"]
-width = 1024
-height = 1024
-seamless = true
-seamless_blend_skirt = 0.371
-color_ramp = SubResource("Gradient_mm0lm")
-noise = SubResource("FastNoiseLite_cx8bx")
-
-[sub_resource type="Gradient" id="Gradient_ghvlu"]
-colors = PackedColorArray(1, 0.918, 0.59, 1, 1, 0.265, 0.02, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c35hs"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5reis"]
-seamless = true
-color_ramp = SubResource("Gradient_ghvlu")
-noise = SubResource("FastNoiseLite_c35hs")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vqxct"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8v47s"]
-seamless = true
-color_ramp = SubResource("Gradient_ghvlu")
-noise = SubResource("FastNoiseLite_vqxct")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqhdx"]
-render_priority = 0
-shader = ExtResource("6_x6eky")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/scrollSpeed = 0.1
-shader_parameter/bloom = 1.0
-shader_parameter/viewMask = false
-shader_parameter/noise1 = SubResource("NoiseTexture2D_5reis")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_8v47s")
-shader_parameter/maskNoise1 = SubResource("NoiseTexture2D_wrmj6")
-shader_parameter/maskNoise2 = SubResource("NoiseTexture2D_dmuf3")
-shader_parameter/mask = ExtResource("7_olsus")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_4hiwx"]
-size = Vector2(1.5, 2)
-
 [node name="Game" type="Node"]
+script = ExtResource("1_uyrw6")
 
 [node name="3DWorld" type="Node3D" parent="."]
 
@@ -171,7 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773823, 0.631897)
 shape = SubResource("BoxShape3D_80y5c")
 
 [node name="Camera3D" type="Camera3D" parent="3DWorld/player"]
-transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 3.239, 5.325)
+transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 3, 5)
 fov = 95.0
 
 [node name="Mesh" type="Node3D" parent="3DWorld/player"]
@@ -202,9 +143,3 @@ shape = SubResource("BoxShape3D_4at78")
 
 [node name="Missiles" parent="." instance=ExtResource("4_88oyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0595884, 0.242312, -7.83605)
-
-[node name="Fire" parent="Missiles" index="2"]
-material_override = SubResource("ShaderMaterial_mqhdx")
-mesh = SubResource("PlaneMesh_4hiwx")
-
-[editable path="Missiles"]
