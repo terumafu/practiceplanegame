@@ -21,7 +21,8 @@ func _process(delta):
 	lerp_3d_rotation(currentRot, rotation, turnSpeed * delta)
 	
 	speed += (acceleration * delta) * slowDown
-	velocity -= global_transform.origin.normalized() * speed * delta
+	print(speed)
+	velocity -= global_transform.origin.normalized() * speed
 	slowDown = clamp(maxSpeed - velocity.distance_to(previousVel) / delta, 0, slowDownPoint) / slowDownPoint
 	
 	previousVel = velocity
