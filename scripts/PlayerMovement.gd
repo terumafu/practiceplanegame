@@ -58,9 +58,9 @@ func get_input(delta):
 
 func handle_cam(delta):
 	if Input.is_action_just_pressed("ZoomIn"):
-		camZoom += 1.0
-	if Input.is_action_just_pressed("ZoomOut"):
 		camZoom -= 1.0
+	if Input.is_action_just_pressed("ZoomOut"):
+		camZoom += 1.0
 	camZoom = clamp(camZoom, 1.0, 10.0)
 	cam.position.y = lerp(cam.position.y, camZoom * 3.0, delta)
 	cam.position.z = lerp(cam.position.z, camZoom * 5.0, delta)

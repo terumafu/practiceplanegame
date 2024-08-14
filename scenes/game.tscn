@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="1_m7m1o"]
 [ext_resource type="Script" path="res://scripts/Shortcuts.gd" id="1_uyrw6"]
 [ext_resource type="Texture2D" uid="uid://btxi37bpdkm67" path="res://assets/Maps/Plane_Plane_Met-Plane_Rough.png" id="2_7mmkt"]
-[ext_resource type="PackedScene" uid="uid://8p3vs5cpp4lu" path="res://scenes/Missiles.tscn" id="4_88oyd"]
 [ext_resource type="Shader" path="res://shaders/Grass.gdshader" id="4_b52bd"]
+[ext_resource type="Script" path="res://scripts/Spawner.gd" id="5_etvhm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80y5c"]
 size = Vector3(1, 1.49097, 4.77151)
@@ -104,24 +104,28 @@ script = ExtResource("1_uyrw6")
 
 [node name="3DWorld" type="Node3D" parent="."]
 
-[node name="player" type="CharacterBody3D" parent="3DWorld"]
+[node name="Player" type="CharacterBody3D" parent="3DWorld"]
 script = ExtResource("1_m7m1o")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773823, 0.631897)
 shape = SubResource("BoxShape3D_80y5c")
 
-[node name="Camera3D" type="Camera3D" parent="3DWorld/player"]
+[node name="Camera3D" type="Camera3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 0.948324, 0.317305, 0, -0.317305, 0.948324, 0, 3, 5)
 fov = 95.0
 
-[node name="Mesh" type="Node3D" parent="3DWorld/player"]
+[node name="Mesh" type="Node3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706562, 0.631897)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/player/Mesh"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/Player/Mesh"]
 transform = Transform3D(-4.80694e-09, -0.1, -5.80959e-09, -0.0149188, 6.46171e-09, -0.0988809, 0.0988809, -3.88642e-09, -0.0149188, 0, -0.706562, -1.98058)
 mesh = SubResource("ArrayMesh_iqby8")
 skeleton = NodePath("")
+
+[node name="Spawner" type="Node3D" parent="3DWorld/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+script = ExtResource("5_etvhm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld"]
 transform = Transform3D(0.978195, 0.1337, 0.158932, -0.20769, 0.629713, 0.74855, 0, -0.765236, 0.64375, 0, 10.2559, 38.878)
@@ -130,6 +134,8 @@ light_angular_distance = 4.05
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
 environment = SubResource("Environment_8up3g")
+
+[node name="Missiles" type="Node3D" parent="3DWorld"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="3DWorld"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -140,6 +146,3 @@ mesh = SubResource("BoxMesh_b0ual")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/StaticBody3D"]
 shape = SubResource("BoxShape3D_4at78")
-
-[node name="Missiles" parent="." instance=ExtResource("4_88oyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0595884, 0.242312, -7.83605)
